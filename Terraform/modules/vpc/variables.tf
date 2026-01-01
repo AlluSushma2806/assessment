@@ -1,20 +1,20 @@
 variable "vpc_name" {
   type        = string
-  description = "my vpc1"
+  default     = "my-vpc1"
 }
 
-variable "subnet1_name" {
+variable "subnet_name" {
   type        = string
-  description = "subnet1"
+  default     = "subnet1"
 }
  
 
-variable "subnet1_cidr" {
+variable "subnet_cidr" {
   type        = string
-  description = "10.0.1.0/24"
+  default     = "10.0.1.0/24"
 }
 
 variable "region" {
   type        = string
-  description = "asia-south1 (Mumbai)"
+  default = "asia-south1"
 }

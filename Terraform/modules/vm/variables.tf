@@ -1,25 +1,19 @@
  variable "vm_name" {
   type        = string
-  description = "terraform_sushma_vm"
+  description = "VM name"
 }
 
 variable "machine_type" {
   type        = string
-  description = "e2-medium"
+  description = "VM machine type"
 }
 
 variable "zone" {
   type        = string
-  description = "asia-south1-a"
+  description = "GCP Zone"
 }
 
 variable "subnet_id" {
   type        = string
-  description = "subnet1_id = module.vpc.subnet1_id"
-}
-
-variable "disk_image" {
-  type        = string
-  description = "ubuntu-os-cloud/ubuntu-2204-lts"
-  default = "default"
+  description = "subnet ID from VPC module"
 }
