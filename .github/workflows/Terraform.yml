@@ -1,45 +1,43 @@
 name: GCP-Terraform-pipeline
+
 on:
   push:
-    branches: 
-        -main
+    branches:
+      - main
 
 jobs:
-  build:
+  terraform:
     runs-on: ubuntu-latest
 
     steps:
-      - name : action checkout
-        uses : actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name : Authenticate to GCP
-        uses : google-github-actions/auth@v2
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{  secrets.GCP_SERVICE_KEY  }} 
+          credentials_json: ${{ secrets.GCP_SERVICE_KEY }}
 
-      - name : setup gcud
-        uses : google-github-actions/setup-gcloud@v2
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-      - name : setuo Terraform
-        uses : hashicorp/setup-terraform@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
 
-      - name : Terraform_Init
-        run  : terraform init
-         working directory :./Terraform
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./Terraform
 
-      - name : Terraform_Validate
-        run  : terraform validate
-         working directory :./Terraform
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: ./Terraform
 
-      - name : Terraform_Plan
-        run  : terraform plan -out=tfplan
-         working directory :./Terraform
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+        working-directory: ./Terraform
 
-      - name : Terraform_Apply
-        run  : terraform apply --auto-approve 
-         working directory :./Terraform
-        
-        
-      
+      - name: Terraform Apply
+        run: terraform apply tfplan
+        working-directory: ./Terraform
