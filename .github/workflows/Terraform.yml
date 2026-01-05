@@ -37,6 +37,11 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
         working-directory: ./Terraform
+
+      - name: Force unlock Terraform state
+        run: terraform force-unlock -force 1767596313589729
+        working-directory: ./Terraform
+
         
       - name: Terraform_Destroy
         run: terraform destroy --auto-approve
