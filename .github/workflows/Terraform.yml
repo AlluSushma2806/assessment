@@ -29,9 +29,17 @@ jobs:
       - name: Terraform Init
         run: terraform init
         working-directory: ./Terraform
+        
+      - name: Terraform_fmt
+        run: terraform fmt
+        working-directory: ./Terraform
 
       - name: Terraform Validate
         run: terraform validate
+        working-directory: ./Terraform
+        
+      - name: Terraform_Destroy
+        run: terraform destroy
         working-directory: ./Terraform
 
       - name: Terraform Plan
